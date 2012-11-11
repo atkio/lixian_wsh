@@ -41,9 +41,9 @@ try:
 	# Retrieve the command from the query string
 	# and unencode the escaped %xx chars
 	if bt:
-		str_command = "/usr/bin/python ./core/lixian_cli.py add --bt " + url
+		str_command = "/usr/bin/python ./core/lixian_cli.py add --bt '" + url +"'"
 	else:
-		str_command = "/usr/bin/python ./core/lixian_cli.py add " + url
+		str_command = "/usr/bin/python ./core/lixian_cli.py add '" + url +"'"
 	print str_command
 except:
 	print 2000
