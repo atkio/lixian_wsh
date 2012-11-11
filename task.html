@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+        </title>
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+        <link rel="stylesheet" href="my.css" />
+        <style>
+            /* App custom styles */
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js">
+        </script>
+        <script src="my.js">
+        </script>
+    </head>
+    <body>
+        <!-- Home -->
+        <div data-role="page" id="taskpage">
+            <div data-theme="a" data-role="header">
+                <a data-role="button" data-rel="back" data-theme="b"  data-icon="back" data-iconpos="left" class="ui-btn-right">
+                    BACK
+                </a>
+                <h3>
+                    离线文件列表
+                </h3>
+                <a data-role="button" data-theme="b" href="index.html" data-icon="home" data-iconpos="left" class="ui-btn-left">
+                    HOME
+                </a>
+            </div>
+            <div data-role="content">
+                <div id="checkboxes1" data-role="fieldcontain">
+                    <select id="tasktype" data-theme="b" onchange="makeList()">
+                        <option value="all">
+                            全部文件
+                        </option>
+                        <option value="completed" selected>
+							已完成
+                        </option>
+						<option value="deleted">
+							已删除
+                        </option>
+						<option value="expired">
+							已过期
+                        </option>
+                    </select>
+                </div>
+                <ul id="tasklist" data-role="listview" data-divider-theme="b" data-inset="true">
+                </ul>
+            </div>
+			  <script>
+			$.ajaxSetup({scriptCharset:'utf-8'});
+           function makeList() {
+				jQuery.getJSON("cgi-bin/list.py?tasktype=" +$('#tasktype').val() ,
+				function(data){
+						$('#tasklist').empty();
+						for(var  idx in data)
+						{
+							$('#tasklist').append("<li><a onclick='changepage("+data[idx].id+")' >"+data[idx].name+"</a></li>");
+						}
+						$('#tasklist').trigger('create');    
+						$('#tasklist').listview('refresh');
+						
+				});   
+				
+				
+			}
+			
+			function changepage(id)
+			{
+				$.lixian ={tasktype:$('#tasktype').val(),id:id};
+				$.mobile.changePage( "file.html", { transition: "slideup"} );
+			}
+			$.lixian={id:-1};
+			makeList();
+			
+			
+       
+        </script>
+        </div>
+      
+    </body>
+</html>
