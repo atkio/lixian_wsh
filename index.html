@@ -3,23 +3,18 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-        </title>
-        <link rel="stylesheet" href="jquery/jquery.mobile-1.1.1.min.css" />
-        <link rel="stylesheet" href="my.css" />
-        <style>
-            /* App custom styles */
-        </style>
-        <script src="jquery/jquery.min.js">
-        </script>
-        <script src="jquery/jquery.mobile-1.1.1.min.js">
-        </script>
-        <script src="my.js">
-        </script>
+        <title> 离线 WebShell </title>
+        <link rel="stylesheet" href="jquery/jquery.mobile-1.2.0.min.css" />
+        <link rel="stylesheet" href="my.css" />        
+        <script src="jquery/jquery.min.js" ></script>        
+        <script src="jquery/jquery.mobile-1.2.0.min.js" ></script>
+		<script src="jquery/jquery.mobile.dynamic.popup.min.js" ></script>		
+        <script src="my.js" ></script>
+		<script src="lixian.js" ></script>
     </head>
     <body>
         <!-- Home -->
-        <div data-role="page" id="page1">
+        <div data-role="page" id="indexpage">
             <div data-theme="a" data-role="header">
                 <h5>
                     离线 WebShell
@@ -31,12 +26,12 @@
                         离线管理
                     </li>
                     <li data-theme="c">
-                        <a href="task.html" data-transition="slide">
+                        <a id="task" data-transition="slide" >
                             离线文件列表
                         </a>
                     </li>
                     <li data-theme="c">
-                        <a href="add.html" data-transition="slide">
+                        <a id="add" data-transition="slide" >
                             添加离线任务
                         </a>
                     </li>
@@ -44,44 +39,25 @@
                         系统配置
                     </li>
                     <li data-theme="c">
-                        <a href="user.html" data-transition="slide">
+                        <a id="login" data-transition="slide"  >
                             登录设置
                         </a>
                     </li>
                     <li data-theme="c">
-                        <a href="setup.html" data-transition="slide">
+                        <a id="env" data-transition="slide" >
                             环境设置
                         </a>
                     </li>
                 </ul>
                 <div data-role="collapsible-set">
-                    <div data-role="collapsible" data-collapsed="false">
-                        <h3>
-                            系统信息
-                        </h3>
-						<div id="startuplog"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-		jQuery.getJSON("cgi-bin/loadconfig.py", function(data){
-			 $.config=data;	
-			});         
-		 $.ajax({
-			   type: "GET",
-			   url: "cgi-bin/startup.py",
-			   success: function(msg){			
-				if(parseInt(msg)==0)
-				  $('#startuplog').append("登录成功");
-				if(parseInt(msg)==3000)
-   				 $('#startuplog').append("登录失败");
-				if(parseInt(msg)==1000)
-   				 $('#startuplog').append("脚本不存在");
-				if(parseInt(msg)==2000)
-   				 $('#startuplog').append("配置失败");
-			   }
-			 }); 
-        </script>
+				<div data-role="collapsible"  data-theme="a" data-collapsed="true" data-content-theme="e">
+					<h3 >
+						系统信息 
+					</h3>					
+					<div id="startuplog" ></div>
+				</div>
+				</div>
+            </div>											
+        </div>   				
     </body>
 </html>

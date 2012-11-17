@@ -1,71 +1,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-        </title>
-          <link rel="stylesheet" href="jquery/jquery.mobile-1.1.1.min.css" />
-        <link rel="stylesheet" href="my.css" />
-        <style>
-            /* App custom styles */
-        </style>
-        <script src="jquery/jquery.min.js">
-        </script>
-        <script src="jquery/jquery.mobile-1.1.1.min.js">
-        </script>
-        <script src="my.js">
-        </script>
-		 <script>
-            function add()
-			{
-			 $.ajax({
-			   type: "POST",
-			   data: { url: $("#url").val(),bt:$('#tasktype').val()},
-			   url: "cgi-bin/add.py",
-			   success: function(msg){}
-			   });
-			}
-        </script>
+        <meta charset="utf-8" />       
     </head>
     <body>
         <!-- Home -->
-        <div data-role="page" id="page1">
+        <div data-role="page" id="addpage">
             <div data-theme="a" data-role="header">
-                <a data-role="button" data-rel="back" data-theme="b" href="#page1" data-icon="back" data-iconpos="left" class="ui-btn-right">
-                    BACK
-                </a>
+              	<a data-role="button" data-theme="b" href="index.html" data-icon="home" data-iconpos="left" class="ui-btn-left">
+                    HOME
+                </a>	
                 <h3>
                     添加离线任务
-                </h3>
-                <a data-role="button" data-theme="b" href="#page1" data-icon="home" data-iconpos="left" class="ui-btn-left">
-                    HOME
-                </a>
+                </h3>               
             </div>
-            <div data-role="content">
-                <ul id="tasklist" data-role="listview" data-divider-theme="b" data-inset="true">
-                </ul>
-                <div data-role="fieldcontain">
-                    <label for="selectmenu1">
-                    </label>
-                    <select name="tasktype" data-theme="b">
+            <div data-role="content">                
+                <div style="width:100%">                    
+                    <select name="tasktype" data-theme="b" style="width:100%">
                         <option value="common">
-                            普通下载（包括电驴）
+                            url链接(非文件)
                         </option>
 						<option value="bt">
-                            Bittorrent
+                            Bittorrent文件链接
                         </option>
                     </select>
                 </div>
-                <div data-role="fieldcontain">
-                    <fieldset data-role="controlgroup">
-                        <label for="url">
-                        </label>
-                        <textarea id="url" placeholder="">
-                        </textarea>
-                    </fieldset>
+                <div style="width:100%">                   
+					<textarea id="url" style="width:100%"></textarea>                    
                 </div>
-                <input type="button" onclick="add()" data-theme="b" value="添加" />
+                <input type="button" id="submit" data-theme="b" value="添加" />				
+				<div data-role="collapsible-set">
+					<div data-role="collapsible"  data-theme="a" data-collapsed="true" data-content-theme="e">
+					<h3 >
+						系统信息 
+					</h3>					
+					<div id="addlog" ></div>
+				</div>
+            </div>
             </div>
 		</div>
     </body>

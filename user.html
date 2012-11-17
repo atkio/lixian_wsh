@@ -1,30 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>
-        </title>
-        <link rel="stylesheet" href="jquery/jquery.mobile-1.1.1.min.css" />
-        <link rel="stylesheet" href="my.css" />
-        <style>
-            /* App custom styles */
-        </style>
-        <script src="jquery/jquery.min.js">
-        </script>
-        <script src="jquery/jquery.mobile-1.1.1.min.js">
-        </script>
-        <script src="my.js">
-        </script>
-	    </head>
-    <body>
-        <!-- Home -->
-        <div data-role="page" id="page1">
-            <div data-theme="a" data-role="header">
-                <a data-role="button" data-rel="back" data-theme="b" href="#page1" data-icon="back" data-iconpos="left" class="ui-btn-right">
-                    BACK
-                </a>
-                <a data-role="button" data-theme="b" href="#page1" data-icon="home" data-iconpos="left" class="ui-btn-left">
+        <meta charset="utf-8" />        
+	</head>
+    <body>        
+        <div data-role="page" id="loginpage">
+            <div data-theme="a" data-role="header">                
+                <a data-role="button" data-theme="b" href="index.html" data-icon="home" data-iconpos="left" class="ui-btn-left">
                     HOME
                 </a>
                 <h3>
@@ -32,47 +14,20 @@
                 </h3>
             </div>
             <div data-role="content">
-				<div data-role="fieldcontain">
-                    <fieldset data-role="controlgroup">
-                        <label for="username">
-                            迅雷ID
-                        </label>
-                        <input name="username" id="username" placeholder="" value="" type="text" />
-                    </fieldset>
+				<div style="width:100%">                    
+					<label for="username" style="width:100%">
+						迅雷ID#不显示保存信息
+					</label>
+					<input id="username" style="width:100%" value="" type="text" />                    
                 </div>
-                <div data-role="fieldcontain">
-                    <fieldset data-role="controlgroup">
-                        <label for="password">
-                            迅雷密码
-                        </label>
-                        <input name="password" id="password" placeholder="" value="" type="text" />
-                    </fieldset>
+                <div data-role="fieldcontain">                    
+					<label for="password" style="width:100%">
+						迅雷密码#不显示保存信息
+					</label>
+					<input id="password" style="width:100%" value="" type="text" />                    
                 </div>
-                <button  data-theme="b" name="submit" onclick="postme()" >修改
-				</button>
-            </div>
-		<script>
-	
-			$('#username')[0].value = $.config.username;
-			$('#password')[0].value = $.config.password;
-			
-			function postme()
-			{
-				$.ajax({
-					type: "POST",
-					data: {username:$('#username')[0].value,
-						   password:$('#password')[0].value},
-					url: "cgi-bin/saveconfig.py",
-					success: function(msg){	
-					jQuery.getJSON("cgi-bin/loadconfig.py", function(data){
-						 $.config=data;	
-						 $('#username')[0].value = $.config.username;
-						 $('#password')[0].value = $.config.password;
-						});
-					}
-				});
-			}			
-        </script>
+                <button  data-theme="b" id="submit" >修改</button>
+            </div>				
         </div>
     </body>
 </html>
