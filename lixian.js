@@ -322,9 +322,8 @@ $( "#addpage" ).live( "pageinit", function(e){
 			$.lixian.message.loading(true);
 			$.ajax({
 				url: $.lixian.cgi.add,  
-				timeout: $.lixian.cgitimeout,
 				data: { url: $("#url").val(),
-						bt:$('#tasktype').val()},				
+						tasktype:$('#tasktype').val()},				
 				Type: "POST",		
 				dataType:"json",
 				async: false,

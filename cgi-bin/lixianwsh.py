@@ -1,6 +1,6 @@
 import sys,os,os.path,json
 import cgi
-import urllib, subprocess as sub
+import urllib,urllib2, subprocess as sub
 import cgitb; cgitb.enable()
 import time
 import re
@@ -196,6 +196,7 @@ def addtask():
 	if "tasktype" in form:
 		bt = (form["tasktype"].value == "bt")	
 		
+		
 	try:
 		sys.path.append('core')
 		from lixian_url import url_unmask
@@ -204,8 +205,7 @@ def addtask():
 		from lixian import XunleiClient
 		client = XunleiClient(conf['username'],conf['password'],conf['LIXIAN_HOME'] +'/.xunlei.lixian.cookies')		
 		if (url.startswith('http://') or url.startswith('ftp://')) and bt:
-			torrent = urllib2.urlopen(url, timeout=60).read()
-			info_hash = lixian_hash_bt.info_hash_from_content(torrent)		
+			torrent = urllib2.urlopen(url, timeout=60).read()		
 			client.add_torrent_task_by_content(torrent, os.path.basename(url))
 			rs['msg']="addok"
 		else:
